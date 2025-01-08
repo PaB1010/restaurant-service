@@ -33,15 +33,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
-
 	implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
-
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
-
-	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.18.2'
-
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.18.2'
 
 	runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
 
@@ -70,21 +66,17 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-// 자동생성될 Querydsl Code 경로 설정
-// 지역변수
+
 def querydslDir = layout.buildDirectory.dir("generated/querydsl").get().asFile
 
-// Java 코드에서 접근 가능하게 설정
 sourceSets {
 	main.java.srcDirs += [ querydslDir ]
 }
 
-// 설정 연결
 tasks.withType(JavaCompile) {
 	options.getGeneratedSourceOutputDirectory().set(file(querydslDir))
 }
 
-// clean 시 Generate 도 같이 삭제되도록
 clean.doLast {
 	file(querydslDir).deleteDir()
 }
