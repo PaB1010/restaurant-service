@@ -1,4 +1,4 @@
-package blue.onedu.restaurant;
+package blue.onedu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
